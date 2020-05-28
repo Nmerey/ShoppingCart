@@ -1,4 +1,4 @@
-class ProductController < ApplicationController
+class ProductsController < ApplicationController
 	def index
 		#cart_products and products has same action cotroller
 		if params[:cart_id]
@@ -6,6 +6,7 @@ class ProductController < ApplicationController
 		else
 			@products = Product.all
 		end
+		render json: @products
 	end
 
 	def add_to_cart
@@ -14,8 +15,7 @@ class ProductController < ApplicationController
 		
 		if 	@product.save
 			flash[:notice] = "Added to cart"
-			render 
-		else
+		end
 
 	end
 
