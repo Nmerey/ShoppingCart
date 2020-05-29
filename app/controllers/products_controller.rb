@@ -1,13 +1,20 @@
 class ProductsController < ApplicationController
 	def index
+
+		@limit = 10
+		@cursor = params.fetch(:cursor,0).to_i
+		@products_per_page = Product.where("id > ?",@cursor).limit(@limit)
 		@products = Product.all
+
 		respond_to do |format|
 			format.html { render :index }
 			format.json { render json: @products }
 		end
+
 	end
 
 	def add_to_cart
+
 		@product = Product.find(params[:product_id])
 		@product.cart_id = Cart.current
 		
@@ -20,10 +27,12 @@ class ProductsController < ApplicationController
 	end
 
 	def new
+
 		@product = Product.new
 	end
 
 	def create
+
 		@product = Product.new(product_params)
 		
 		if @product.save
