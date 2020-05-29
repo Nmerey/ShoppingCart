@@ -28,7 +28,6 @@ class ProductsController < ApplicationController
 		
 		if @product.save
 			flash[:notice] = "Product successfully created"
-			render :index
  		else
  			flash[:alert] = " Some problem with saving!"
  			render :new
