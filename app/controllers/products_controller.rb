@@ -1,12 +1,10 @@
 class ProductsController < ApplicationController
 	def index
-		#cart_products and products has same action cotroller
-		if params[:cart_id]
-			@products = Cart.current.products
-		else
-			@products = Product.all
+		@products = Product.all
+		respond_to do |format|
+			format.html { render :index }
+			format.json { render json: @products }
 		end
-		render json: @products
 	end
 
 	def add_to_cart
@@ -25,6 +23,15 @@ class ProductsController < ApplicationController
 
 	def create
 		@product = Product.new(product_params)
+		
+		if @product.save
+			flash[:notice] = "Product successfully created"
+			render :index
+ 		else
+ 			flash[:alert] = " Some problem with saving!"
+ 			render :new
+ 		end
+
 	end
 
 	private

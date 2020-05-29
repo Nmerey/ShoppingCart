@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   end
 
   resources :products, only: [:show, :index, :create, :new]
+
+  root to: 'products#index'
 end
