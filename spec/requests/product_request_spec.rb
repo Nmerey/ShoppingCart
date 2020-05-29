@@ -14,7 +14,7 @@ RSpec.describe "Products", type: :request do
 		context "when cart_id is given" do
 			it "returns products within that cart" do
 				@products = create_list(:product, 5)
-				get products_path, params: {cart: Cart.current}
+				get products_path, params: {cart_id: Cart.current.id}
 				expect(response.body).to eq(Product.where(cart: Cart.current).map { |product| ProductSerializer.new(product)}.to_json)
 			end
 		end
