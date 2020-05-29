@@ -12,7 +12,9 @@ class ProductsController < ApplicationController
 		@product.cart_id = Cart.current
 		
 		if 	@product.save
-			flash[:notice] = "Added to cart"
+			flash[:notice] = "Added to cart!"
+		else
+			flash[:alert] = "Could not add to cart!"
 		end
 
 	end
