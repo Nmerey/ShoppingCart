@@ -19,9 +19,9 @@ class ProductsController < ApplicationController
 		@product.cart_id = Cart.current
 		
 		if 	@product.save
-			flash[:notice] = "Added to cart!"
+			flash[:success] = "Added to cart!"
 		else
-			flash[:alert] = "Could not add to cart!"
+			flash[:danger] = "Could not add to cart!"
 		end
 
 	end
@@ -36,9 +36,10 @@ class ProductsController < ApplicationController
 		@product = Product.new(product_params)
 		
 		if @product.save
-			flash[:notice] = "Product successfully created"
+			flash[:success] = "Product successfully created"
+			redirect_to products_path
  		else
- 			flash[:alert] = " Some problem with saving!"
+ 			flash[:danger] = " Some problem with saving!"
  			render :new
  		end
 
