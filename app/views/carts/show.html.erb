@@ -5,7 +5,6 @@
       <th scope="col">ID</th>
       <th scope="col">Name</th>
       <th scope="col">Price</th>
-      <th scope="col">Add to Cart</th>
     </tr>
   </thead>
 	<% @products_per_page.each do |product| %>
@@ -14,16 +13,16 @@
 	      <th scope="row"><%= product.id %></th>
 	      <td><%= product.name %></td>
 	      <td><%= product.price %>$</td>
-	      <td><%= link_to 'Add' %></td>
 	    </tr>
 	  </tbody>
 	<% end %>
 	<tr>
+		<!-- Проверка для показа кнопок назад и впред -->
 		<% if @products_per_page.first != @products.first %>
-		<th scope="col"><%= link_to "Prev", products_path(cursor: params[:cursor].to_i - @limit)%></th>
+		<th scope="col"><%= link_to "Prev", cart_path(prev: @products_per_page.first.id)%></th>
 		<% end %>
 		<% if @products_per_page.last != @products.last %>
-		<th scope="col"><%= link_to "Next",products_path(cursor: @products_per_page.last.id) %></th>
+		<th scope="col"><%= link_to "Next",cart_path(cursor: @products_per_page.last.id) %></th>
 		<% end %>
 		
 	</tr>

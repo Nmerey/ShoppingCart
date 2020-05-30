@@ -3,8 +3,14 @@ class ProductsController < ApplicationController
 
 		@limit = 10
 		@cursor = params.fetch(:cursor,0).to_i
-		@products_per_page = Product.where("id > ?",@cursor).limit(@limit)
 		@products = Product.all
+
+		if params[:prev]
+			#logic when previous button is pressed
+			@products_per_page = Product.where("id < ?",params[:prev]).limit(@limit)
+		else
+			@products_per_page = Product.where("id > ?",@cursor).limit(@limit)
+		end
 
 		respond_to do |format|
 			format.html { render :index }
@@ -16,12 +22,14 @@ class ProductsController < ApplicationController
 	def add_to_cart
 
 		@product = Product.find(params[:product_id])
-		@product.cart_id = Cart.current
+		@product.cart_id = Cart.current.id
 		
 		if 	@product.save
 			flash[:success] = "Added to cart!"
+			redirect_to cart_path(Cart.current)
 		else
 			flash[:danger] = "Could not add to cart!"
+			render :index
 		end
 
 	end

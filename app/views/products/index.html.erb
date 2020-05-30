@@ -14,7 +14,7 @@
 	      <th scope="row"><%= product.id %></th>
 	      <td><%= product.name %></td>
 	      <td><%= product.price %>$</td>
-	      <td><%= link_to 'Add' %></td>
+	      <td><%= link_to 'Add', add_to_cart_path(product_id: product.id) %></td>
 	    </tr>
 	  </tbody>
 	<% end %>
