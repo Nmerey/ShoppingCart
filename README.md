@@ -1,13 +1,13 @@
-#ShoppingCart
+# ShoppingCart
 
 Traditional Shopping cart with cursor pagination implemented.
 
-##Enviroment
+## Enviroment
 
 ruby-2.6.3
 rails-6.0.3
 
-##Installation
+## Installation
 
 ```bash
 git clone https://github.com/Nmerey/ShoppingCart.git
