@@ -1,24 +1,23 @@
-# README
+#ShoppingCart
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Traditional Shopping cart with cursor pagination implemented.
 
-Things you may want to cover:
+##Enviroment
 
-* Ruby version
+ruby-2.6.3
+rails-6.0.3
 
-* System dependencies
+##Installation
 
-* Configuration
+```bash
+git clone https://github.com/Nmerey/ShoppingCart.git
 
-* Database creation
+cd ShoppingCart
 
-* Database initialization
+bundle install
 
-* How to run the test suite
+rake db:create && db:migrate && db:seed
 
-* Services (job queues, cache servers, search engines, etc.)
+rails s
+```
 
-* Deployment instructions
-
-* ...
