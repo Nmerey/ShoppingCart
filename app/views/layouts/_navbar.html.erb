@@ -2,6 +2,6 @@
   <a class="navbar-brand" href="/">
     Home
   </a>
-  <%= link_to "Add Product", new_product_path %>
-  <%= link_to "My Cart", cart_path(Cart.current) %>
+  <%= link_to "Add Product", new_product_path, class: "btn btn-primary" %>
+  <%= link_to "My Cart", cart_path(Cart.current), class: "nav-item navbar-brand" %>
 </nav>
