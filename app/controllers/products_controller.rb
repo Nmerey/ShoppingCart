@@ -1,15 +1,12 @@
 class ProductsController < ApplicationController
 	def index
-
-		@limit = 10
-		@cursor = params.fetch(:cursor,0).to_i
 		@products = Product.all
 
+		#Проверка на какую кнопку нажали назад или вперед
 		if params[:prev]
-			#logic when previous button is pressed
-			@products_per_page = Product.where("id < ?",params[:prev]).limit(@limit)
+			@products_per_page = @products.prev(params[:prev],7)
 		else
-			@products_per_page = Product.where("id > ?",@cursor).limit(@limit)
+			@products_per_page = @products.paginate(params.fetch(:cursor,0),7)
 		end
 
 		respond_to do |format|

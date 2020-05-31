@@ -1,16 +1,13 @@
 class CartsController < ApplicationController
 	
 	def show
-		@limit = 10
-		@cursor = params.fetch(:cursor,0).to_i
-		@cart = Cart.find(params[:id])
+		@cart = Cart.current
 		@products = @cart.products
-
+		# def paginate(cursor,limit = 10 by default)
 		if params[:prev]
-			#Логика когда нажаты кнопки пагинаций передают разные параметры
-			@products_per_page = Product.where("id < ? AND cart_id = ?",params[:prev], @cart.id).limit(@limit)
+			@products_per_page = @products.prev(params[:prev],7)
 		else
-			@products_per_page = Product.where("id > ? AND cart_id = ?",@cursor, @cart.id).limit(@limit)
+			@products_per_page = @products.paginate(params.fetch(:cursor,0),7)
 		end
 
 		respond_to do |format|

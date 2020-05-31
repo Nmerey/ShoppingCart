@@ -20,7 +20,7 @@
 	<% end %>
 	<tr>
 		<% if @products_per_page.first != @products.first %>
-		<th scope="col"><%= link_to "Prev", products_path(cursor: params[:cursor].to_i - @limit)%></th>
+		<th scope="col"><%= link_to "Prev", products_path(prev: @products_per_page.first.id)%></th>
 		<% end %>
 		<% if @products_per_page.last != @products.last %>
 		<th scope="col"><%= link_to "Next",products_path(cursor: @products_per_page.last.id) %></th>
